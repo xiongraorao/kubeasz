@@ -1,5 +1,6 @@
 {
-  "registry-mirrors": ["https://kuamavit.mirror.aliyuncs.com", "https://registry.docker-cn.com", "https://docker.mirrors.ustc.edu.cn"], 
+  "registry-mirrors": ["https://pan5r115.mirror.aliyuncs.com","https://kuamavit.mirror.aliyuncs.com", "https://registry.docker-cn.com", "https://docker.mirrors.ustc.edu.cn"], 
+  "insecure-registries":["http://harbor.oceanai.com.cn"],
   "max-concurrent-downloads": 10,
   "log-driver": "json-file",
   "log-level": "warn",

@@ -1,16 +1,16 @@
 ## ---------docker daemon配置部分-----------
-- name: 下载 docker 二进制文件
-  copy: src={{ base_dir }}/bin/{{ item }} dest={{ bin_dir }}/{{ item }} mode=0755
-  with_items:
-  - docker-containerd
-  - docker-containerd-shim
-  - docker-init
-  - docker-runc
-  - docker
-  - docker-containerd-ctr
-  - dockerd
-  - docker-proxy
-  tags: upgrade_k8s
+#- name: 下载 docker 二进制文件
+#  copy: src={{ base_dir }}/bin/{{ item }} dest={{ bin_dir }}/{{ item }} mode=0755
+#  with_items:
+#  - docker-containerd
+#  - docker-containerd-shim
+#  - docker-init
+#  - docker-runc
+#  - docker
+#  - docker-containerd-ctr
+#  - dockerd
+#  - docker-proxy
+#  tags: upgrade_k8s
 
 - name: docker命令自动补全
   copy: src=docker dest=/etc/bash_completion.d/docker mode=0644
