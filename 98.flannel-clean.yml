@@ -24,7 +24,8 @@
 	ip link del cni0; \
         ip link del mynet0; \
 	systemctl restart networking; \
-	systemctl restart network"
+	systemctl restart network; \
+	systemctl restart docker"
     ignore_errors: true
 # 清理负载均衡相关
 - hosts: lb
