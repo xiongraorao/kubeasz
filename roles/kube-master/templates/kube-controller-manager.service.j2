@@ -19,6 +19,7 @@ ExecStart={{ bin_dir }}/kube-controller-manager \
   --v=2
 Restart=on-failure
 RestartSec=5
+TimeoutSec=300
 
 [Install]
 WantedBy=multi-user.target

@@ -16,6 +16,7 @@ ExecStart={{ bin_dir }}/kube-proxy \
 Restart=on-failure
 RestartSec=5
 LimitNOFILE=65536
+TimeoutSec=300
 
 [Install]
 WantedBy=multi-user.target

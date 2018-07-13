@@ -27,6 +27,7 @@ ExecStart={{ bin_dir }}/etcd \
 Restart=on-failure
 RestartSec=5
 LimitNOFILE=65536
+TimeoutSec=300
 
 [Install]
 WantedBy=multi-user.target

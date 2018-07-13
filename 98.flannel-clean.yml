@@ -1,0 +1,45 @@
+# 清理集群docker服务、网络相关
+- hosts:
+  - kube-master
+  - new-master
+  - kube-node
+  - new-node
+  tasks:
+  - name: 清理目录和文件
+    file: name={{ item }} state=absent
+    with_items:
+    - "/etc/cni/"
+    - "/run/flannel/"
+    - "/var/lib/cni/"
+
+  - name: 清理 iptables
+    shell: "iptables -F && iptables -X \
+	&& iptables -F -t nat && iptables -X -t nat \
+	&& iptables -F -t raw && iptables -X -t raw \
+	&& iptables -F -t mangle && iptables -X -t mangle"
+
+  - name: 清理网络
+    shell: "ip link del tunl0; \
+	ip link del flannel.1; \
+	ip link del cni0; \
+        ip link del mynet0; \
+	systemctl restart networking; \
+	systemctl restart network; \
+	systemctl restart docker"
+    ignore_errors: true
+# 清理负载均衡相关
+- hosts: lb
+  tasks:
+  - name: stop keepalived service
+    shell: systemctl disable keepalived && systemctl stop keepalived
+    ignore_errors: true
+
+  - name: stop haproxy service
+    shell: systemctl disable haproxy && systemctl stop haproxy
+    ignore_errors: true
+
+  - name: 清理LB 配置文件目录
+    file: name={{ item }} state=absent
+    with_items:
+    - "/etc/haproxy"
+    - "/etc/keepalived"

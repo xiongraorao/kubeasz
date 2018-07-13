@@ -2,6 +2,7 @@
 Description=Kubernetes API Server
 Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 After=network.target
+After=etcd.service
 
 [Service]
 ExecStart={{ bin_dir }}/kube-apiserver \
@@ -47,6 +48,7 @@ Restart=on-failure
 RestartSec=5
 Type=notify
 LimitNOFILE=65536
+TimeoutSec=300
 
 [Install]
 WantedBy=multi-user.target
